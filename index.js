@@ -47,7 +47,7 @@ function GetKey() {
       .then((keyCheckRes) => {
         if (keyCheckRes.success) {
           //If so, then continue to the next question about update rate
-          GetUpdateRate();
+          GetUpdateRate(authKey);
         } else {
           //If not, Ask them again
           log.warn("[API]", "That key was invalid");
@@ -63,7 +63,7 @@ function GetKey() {
 
 function GetUpdateRate(authKey) {
   //Ask the user how often they would like to update the user count
-  rl.question("Update rate in minutes: [2] ", async (updateRate) => {
+  rl.question("Update rate in minutes: [default 2] ", async (updateRate) => {
     //If they press enter without input, use the default of 2 minutes
     if (updateRate == "") {
       updateRate = 2;
@@ -152,7 +152,23 @@ function StartChecking(key, rate) {
               "vrcdn-api-key": key,
             },
             body: JSON.stringify(instanceUpdateData),
-          });
+          })
+            .then((res) => res.json())
+            .then((instanceUpdateRes) => {
+              //check if the update was successful
+              if (instanceUpdateRes.success) {
+                log.notice(
+                  "[API]",
+                  `Successfully updated player count for your instance on bot ${instanceUpdateRes.bot}`
+                );
+              } else {
+                log.notice("[API]", `Failed to update player count`);
+              }
+            })
+            .catch((err) => {
+              //An oopsie occured somewhere
+              log.error("[API]", "An error occured: ", err);
+            });
 
           //Inform the user we are now waiting.
           log.notice(
