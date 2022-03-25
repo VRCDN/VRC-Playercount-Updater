@@ -149,6 +149,7 @@ function StartChecking(key, rate) {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+              "vrcdn-api-key": key,
             },
             body: JSON.stringify(instanceUpdateData),
           });
