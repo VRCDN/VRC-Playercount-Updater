@@ -78,7 +78,7 @@ function GetUpdateRate(authKey) {
         "Invalid update rate, Must be a number and above 0"
       );
       //Try again
-      return GetUpdateRate();
+      return GetUpdateRate(authKey);
     }
     //Start the whole process that watches logs
     log.notice("[Timer]", `Waiting ${updateRate} minutes before reading log`);
