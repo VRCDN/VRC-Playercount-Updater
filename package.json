@@ -7,9 +7,11 @@
   "name": "vrc-log-playercount",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": "index.js",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pkg . --compress gzip -o bin/vrcdn-playercount-updater"
   },
   "keywords": [],
   "author": "VRCDN",

@@ -8,7 +8,7 @@ const readline = require("readline");
 const fs = require("fs");
 const { info } = require("console");
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://api.vrcdn.live";
 
 const DEBUG = true;
 
