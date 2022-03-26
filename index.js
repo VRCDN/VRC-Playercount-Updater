@@ -3,7 +3,7 @@ const VRCLogParser = require("@vrcdn/node-vrc-log-parser");
 const os = require("os");
 const path = require("path");
 const fetch = require("node-fetch");
-var log = require("npmlog");
+const log = require("npmlog");
 const readline = require("readline");
 const fs = require("fs");
 const { info } = require("console");
@@ -34,8 +34,6 @@ let logParser = new VRCLogParser();
 function dateSort(a, b) {
   return new Date(a.birthtime).getTime() - new Date(b.birthtime).getTime();
 }
-
-var curLogFile = "";
 
 function GetKey() {
   //Ask the user to enter the appropriate key for the bot
@@ -92,6 +90,7 @@ function GetUpdateRate(authKey) {
 }
 
 function StartChecking(key, rate) {
+  var curLogFile = "";
   //Get newest log file and keep a consistantly updated instance user count ;P
   setInterval(() => {
     //Reads the VRChat folder
