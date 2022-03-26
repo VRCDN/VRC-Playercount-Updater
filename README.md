@@ -1,4 +1,4 @@
-# VRC-Playercount-Updater
+# VRC Playercount Updater
 > :warning: This is reference code, this will not compile or work without the private packages.
 
 This script is used to update playcounts of an instance for the VRCDN bots by using the log files.
