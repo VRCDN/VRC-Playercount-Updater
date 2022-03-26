@@ -6,6 +6,7 @@ const fetch = require("node-fetch");
 var log = require("npmlog");
 const readline = require("readline");
 const fs = require("fs");
+const { info } = require("console");
 
 const API_URL = "http://localhost:8080";
 
@@ -180,5 +181,24 @@ function StartChecking(key, rate) {
   }, 1000 * 60 * rate);
 }
 
-//Enter the madness
-GetKey();
+function checkForUpdate() {
+  //First things first, lets check our version vs the newest version
+  fetch(`${API_URL}/api/bots/tool`)
+    .then((res) => res.json())
+    .then((toolInfo) => {
+      //Does it match?
+      if (toolInfo.version != require("./package.json").version) {
+        log.notice(
+          "[UPDATE]",
+          "Your version differs from the release version, please contact VRCDN to obtain a new version."
+        );
+      }
+      //Enter the madness
+      GetKey();
+    })
+    .catch((err) => {
+      log.error("[API]", "An error occured: ", err);
+    });
+}
+
+checkForUpdate();
