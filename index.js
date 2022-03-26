@@ -12,11 +12,13 @@ const API_URL = "http://localhost:8080";
 
 const DEBUG = true;
 
+//Create the readline interface to let us get user input
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
+//Credits to Klukule here ;)
 const VRCPath = path.join(
   os.homedir(),
   "AppData",
