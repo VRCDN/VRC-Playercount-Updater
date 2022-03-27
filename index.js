@@ -90,7 +90,7 @@ function GetUpdateRate(authKey) {
 }
 
 function StartChecking(key, rate) {
-  var curLogFile = "";
+  let curLogFile = "";
   //Get newest log file and keep a consistantly updated instance user count ;P
   setInterval(() => {
     //Reads the VRChat folder
@@ -124,7 +124,7 @@ function StartChecking(key, rate) {
         .parseLog(path.join(VRCPath, sortedFiles[sortedFiles.length - 1].file))
         .then((events) => {
           //Get the instanceId of the newest instance
-          var instanceId = Object.keys(events.instanceInfo)[
+          let instanceId = Object.keys(events.instanceInfo)[
             Object.keys(events.instanceInfo).length - 1
           ];
           if (DEBUG)
@@ -135,7 +135,7 @@ function StartChecking(key, rate) {
               }`
             );
           //Create our JSON data to push to the API
-          var instanceUpdateData = {
+          let instanceUpdateData = {
             count: events.instanceInfo[instanceId],
             instanceId,
           };
