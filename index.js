@@ -8,6 +8,14 @@ const readline = require("readline");
 const fs = require("fs");
 const { info } = require("console");
 
+//Add a timestamp to all logs
+Object.defineProperty(log, "heading", {
+  get: () => {
+    return new Date().toUTCString();
+  },
+});
+log.headingStyle = { bg: "", fg: "white" };
+
 const API_URL = "https://api.vrcdn.live";
 
 const DEBUG = true;
