@@ -81,7 +81,7 @@ function GetUpdateRate(authKey) {
     //updateRate is currently a string, so we parse it into a Int
     updateRate = parseInt(updateRate);
     //Make sure that its correct and not 0
-    if (isNaN(updateRate) || updateRate == undefined || updateRate == 0) {
+    if (isNaN(updateRate) || updateRate == undefined || updateRate <= 0) {
       log.warn(
         "[InstanceInfo]",
         "Invalid update rate, Must be a number and above 0"
