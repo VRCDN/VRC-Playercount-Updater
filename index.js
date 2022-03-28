@@ -6,7 +6,6 @@ const fetch = require("node-fetch");
 const log = require("npmlog");
 const readline = require("readline");
 const fs = require("fs");
-const { info } = require("console");
 
 //Add a timestamp to all logs
 Object.defineProperty(log, "heading", {
