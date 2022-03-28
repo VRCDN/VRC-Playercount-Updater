@@ -72,29 +72,32 @@ function GetKey() {
 
 function GetUpdateRate(authKey) {
   //Ask the user how often they would like to update the user count
-  rl.question("Update rate in minutes: [default 2] ", async (updateRate) => {
-    //If they press enter without input, use the default of 2 minutes
-    if (updateRate == "") {
-      updateRate = 2;
-      log.notice("[InstanceInfo]", "Using default update rate of 2 minutes");
+  rl.question(
+    "Enter update rate in minutes: [default 2] ",
+    async (updateRate) => {
+      //If they press enter without input, use the default of 2 minutes
+      if (updateRate == "") {
+        updateRate = 2;
+        log.notice("[InstanceInfo]", "Using default update rate of 2 minutes");
+      }
+      //updateRate is currently a string, so we parse it into a Int
+      updateRate = parseInt(updateRate);
+      //Make sure that its correct and not 0
+      if (isNaN(updateRate) || updateRate == undefined || updateRate <= 0) {
+        log.warn(
+          "[InstanceInfo]",
+          "Invalid update rate, Must be a number and above 0"
+        );
+        //Try again
+        return GetUpdateRate(authKey);
+      }
+      //Start the whole process that watches logs
+      log.notice("[Timer]", `Waiting ${updateRate} minutes before reading log`);
+      StartChecking(authKey, updateRate);
+      //Close our readline interface so it doesn't hold the process open when you try to exit with (CTRL-C)
+      rl.close();
     }
-    //updateRate is currently a string, so we parse it into a Int
-    updateRate = parseInt(updateRate);
-    //Make sure that its correct and not 0
-    if (isNaN(updateRate) || updateRate == undefined || updateRate <= 0) {
-      log.warn(
-        "[InstanceInfo]",
-        "Invalid update rate, Must be a number and above 0"
-      );
-      //Try again
-      return GetUpdateRate(authKey);
-    }
-    //Start the whole process that watches logs
-    log.notice("[Timer]", `Waiting ${updateRate} minutes before reading log`);
-    StartChecking(authKey, updateRate);
-    //Close our readline interface so it doesn't hold the process open when you try to exit with (CTRL-C)
-    rl.close();
-  });
+  );
 }
 
 function StartChecking(key, rate) {
