@@ -11,10 +11,11 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "pkg . -o bin/vrcdn-playercount-updater"
+    "build": "node setBuildTime.js && pkg . -o bin/vrcdn-playercount-updater"
   },
   "keywords": [],
   "author": "VRCDN",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "buildTime": "2022-04-01 14:48:14"
 }

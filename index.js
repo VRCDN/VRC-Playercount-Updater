@@ -10,7 +10,7 @@ const fs = require("fs");
 //Add a timestamp to all logs
 Object.defineProperty(log, "heading", {
   get: () => {
-    return new Date().toUTCString();
+    return new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
   },
 });
 log.headingStyle = { bg: "", fg: "white" };
@@ -212,4 +212,5 @@ function checkForUpdate() {
     });
 }
 
+log.notice(`This version was built @`, require("./package.json").buildTime);
 checkForUpdate();
