@@ -11,4 +11,5 @@ package.buildHash = require("child_process")
 
 fs.writeFileSync("package.json", JSON.stringify(package, null, 2));
 
-console.log("Written build time as:", CurTime);
+console.log("Written build time as:", package.buildTime);
+console.log("Written build hash:", package.buildHash);

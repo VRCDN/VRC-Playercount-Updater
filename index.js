@@ -212,5 +212,8 @@ function checkForUpdate() {
     });
 }
 
-log.notice(`This version was built @`, require("./package.json").buildTime);
+log.notice(
+  `This version (${require("./package.json").buildHash}) was built @`,
+  require("./package.json").buildTime
+);
 checkForUpdate();
