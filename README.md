@@ -1,3 +1,6 @@
+## ARCHIVED
+Bots are no longer an active service.
+
 # VRC Playercount Updater
 > :warning: This is reference code, this will not compile or work without the private packages.
 
